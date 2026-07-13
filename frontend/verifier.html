@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vérifier - VORAX</title>
+<style>
+  body{background:#000;color:#fff;font-family:Arial;text-align:center;padding:20px}
+  .box{margin:40px auto;padding:30px;border:2px solid #ff0000;border-radius:15px;background:#111;max-width:500px}
+  input{padding:15px;width:80%;border-radius:8px;border:none;font-size:16px}
+  button{background:#ff0000;color:#fff;padding:15px 30px;border:none;border-radius:8px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:10px}
+  .result{margin-top:20px;padding:20px;border-radius:10px;font-size:18px;background:#00aa00}
+  h1{color:#ff0000}
+</style>
+</head>
+<body>
+  <h1>🔍 VÉRIFIER Une putes</h1>
+  <div class="box">
+    <input type="text" id="numero" placeholder="Ex: 22507123456">
+    <br>
+    <button onclick="verifier()">VÉRIFIER</button>
+    <div id="resultat"></div>
+  </div>
+  <a href="/signal" style="color:#ff0000">🚨 Signaler</a> | <a href="/" style="color:#ff0000">← Accueil</a>
+<script>
+async function verifier(){
+  const num = document.getElementById('numero').value;
+  const resDiv = document.getElementById('resultat');
+  if(!num){alert("Entre un numéro"); return;}
+  resDiv.innerHTML = "Vérification...";
+  const res = await fetch('/api/check?numero='+num);
+  const data = await res.json();
+  resDiv.className = "result";
+  resDiv.innerHTML = `✅ SÉCURISÉ <br> vas Signaler. <br> il va off .`;
+}
+</script>
+</body>
+</html>
