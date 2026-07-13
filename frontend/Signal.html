@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signaler - VORAX</title>
+<style>
+  body{background:#000;color:#fff;font-family:Arial;text-align:center;padding:20px}
+  .box{margin:40px auto;padding:30px;border:2px solid #ff0000;border-radius:15px;background:#111;max-width:500px}
+  input, textarea{padding:15px;width:90%;border-radius:8px;border:none;font-size:16px;margin:10px 0}
+  button{background:#ff0000;color:#fff;padding:15px 30px;border:none;border-radius:8px;font-size:18px;font-weight:bold;cursor:pointer}
+  h1{color:#ff0000}
+</style>
+</head>
+<body>
+  <h1>🚨 off les putes</h1>
+  <div class="box">
+    <input type="text" id="numero" placeholder="Numéro: 22507XXXXXXX">
+    <textarea id="preuve" rows="4" placeholder="Décris + preuves..."></textarea>
+    <br>
+    <button onclick="signaler()"> envoyer cette putes à WhatsApp</button>
+    <p id="msg"></p>
+  </div>
+  <a href="/verifier" style="color:#ff0000">🔍 Vérifier</a> | <a href="/support" style="color:#ff0000">📧 Support</a>
+<script>
+async function signaler(){
+  const num = document.getElementById('numero').value;
+  const preuve = document.getElementById('preuve').value;
+  const msg = document.getElementById('msg');
+  if(!num || !preuve){alert("Remplis tout"); return;}
+  const res = await fetch('/api/signal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({numero:num,preuve:preuve})});
+  if(res.ok){msg.style.color = "#00ff00";msg.innerText = "✅ send for VORAX. Merci !";document.getElementById('numero').value = "";document.getElementById('preuve').value = "";}
+}
+</script>
+</body>
+</html>
