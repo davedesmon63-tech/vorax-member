@@ -1,13 +1,5 @@
-{
-  "name": "vorax-user",
-  "version": "1.0.0",
-  "description": "Anti-arnaque WhatsApp",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "nodemailer": "^6.9.4"
-  }
-}
+    "dependencies": {
+      "express": "^4.18.2",
+      "nodemailer": "^6.9.4",
+      "dotenv": "^16.3.1"
+    }
